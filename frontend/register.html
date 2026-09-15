@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration | EduSphere</title>
+  <meta name="description" content="Create a new student account to access tuition resources and enroll in online batches.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body style="background:var(--bg-body);">
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon">E</div>
+        <div class="brand-name">
+          <span class="brand-name-main"><span class="institute-name">EduSphere</span></span>
+          <span class="brand-tagline-mini institute-tagline">Learn Better. Grow Smarter.</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="courses.html" class="nav-link">Courses</a>
+        <a href="admission.html" class="nav-link">Admission</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline btn-sm">Already have an account?</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-wrapper">
+    <div class="auth-card" style="max-width:540px;">
+      <div class="auth-header">
+        <h2>Create Student Account</h2>
+        <p>Register to manage your course materials, timetable, and assignments.</p>
+      </div>
+
+      <form id="registerForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="regFullName">Full Name <span class="required-star">*</span></label>
+          <input type="text" id="regFullName" name="fullName" class="form-control" placeholder="e.g. Tanvi Deshmukh" required>
+          <div class="form-error-text">Please enter your full name.</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label" for="regEmail">Email Address <span class="required-star">*</span></label>
+            <input type="email" id="regEmail" name="email" class="form-control" placeholder="tanvi@example.com" required>
+            <div class="form-error-text">Valid email is required.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="regPhone">Mobile Number <span class="required-star">*</span></label>
+            <input type="tel" id="regPhone" name="phone" class="form-control" placeholder="10-digit number" required>
+            <div class="form-error-text">10-digit phone number is required.</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label" for="regClass">Current Class <span class="required-star">*</span></label>
+            <select id="regClass" name="currentClass" class="form-control" required>
+              <option value="">Select Grade</option>
+              <option value="Class 9">Class 9</option>
+              <option value="Class 10">Class 10</option>
+              <option value="Class 11">Class 11</option>
+              <option value="Class 12">Class 12</option>
+            </select>
+            <div class="form-error-text">Please select your grade.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="regBoard">Board <span class="required-star">*</span></label>
+            <select id="regBoard" name="board" class="form-control" required>
+              <option value="CBSE">CBSE</option>
+              <option value="ICSE">ICSE</option>
+              <option value="State Board">State Board</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label" for="regPassword">Password <span class="required-star">*</span></label>
+            <input type="password" id="regPassword" name="password" class="form-control" placeholder="Min. 6 characters" minlength="6" required>
+            <div class="form-error-text">Password must be at least 6 characters.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="regConfirmPassword">Confirm Password <span class="required-star">*</span></label>
+            <input type="password" id="regConfirmPassword" name="confirmPassword" class="form-control" placeholder="Re-enter password" required>
+            <div class="form-error-text">Passwords must match.</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="custom-checkbox-group">
+            <input type="checkbox" id="regConsent" required>
+            <span class="checkbox-visual">
+              <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            </span>
+            <span class="checkbox-label-text">
+              I agree to the institute terms, privacy policy, and tuition code of conduct. <span class="required-star">*</span>
+            </span>
+          </label>
+        </div>
+
+        <button type="submit" id="btnRegisterSubmit" class="btn btn-primary btn-block btn-lg">
+          Create Student Account &rarr;
+        </button>
+      </form>
+
+      <div style="text-align:center;margin-top:2rem;font-size:0.9rem;color:var(--text-muted);">
+        Already registered? 
+        <a href="login.html" style="color:var(--primary);font-weight:600;">Sign in here</a>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    import { Auth } from './js/auth.js';
+    import { showToast } from './js/main.js';
+
+    const form = document.getElementById('registerForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const fullName = document.getElementById('regFullName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const phone = document.getElementById('regPhone').value.trim();
+      const currentClass = document.getElementById('regClass').value;
+      const board = document.getElementById('regBoard').value;
+      const password = document.getElementById('regPassword').value;
+      const confirmPassword = document.getElementById('regConfirmPassword').value;
+      const consent = document.getElementById('regConsent').checked;
+
+      if (!fullName || !email || !phone || !currentClass || !password) {
+        showToast('Required Fields Missing', 'Please fill in all mandatory fields.', 'error');
+        return;
+      }
+
+      if (password.length < 6) {
+        showToast('Weak Password', 'Password must be at least 6 characters.', 'error');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showToast('Password Mismatch', 'Passwords do not match.', 'error');
+        return;
+      }
+
+      if (!consent) {
+        showToast('Terms Required', 'Please agree to terms to complete registration.', 'warning');
+        return;
+      }
+
+      const submitBtn = document.getElementById('btnRegisterSubmit');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Creating Account...';
+
+      try {
+        const user = await Auth.register({
+          fullName,
+          email,
+          phone,
+          currentClass,
+          board,
+          password
+        });
+
+        showToast('Account Created Successfully!', `Welcome, ${user.fullName}!`, 'success');
+        setTimeout(() => {
+          window.location.href = 'student-dashboard.html';
+        }, 1000);
+
+      } catch (err) {
+        showToast('Registration Error', err.message, 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Create Student Account &rarr;';
+      }
+    });
+  </script>
+</body>
+</html>

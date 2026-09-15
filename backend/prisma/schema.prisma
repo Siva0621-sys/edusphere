@@ -1,0 +1,368 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  TEACHER
+  STUDENT
+  APPLICANT
+  GUARDIAN
+}
+
+enum ApplicationStatus {
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  WAITLISTED
+}
+
+enum ClassMode {
+  ONLINE
+  OFFLINE
+  HYBRID
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  COMPLETED
+  SUSPENDED
+  DROPPED
+}
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  passwordHash String
+  role         Role      @default(STUDENT)
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  studentProfile StudentProfile?
+  teacherProfile TeacherProfile?
+  notifications  Notification[]
+  auditLogs      AuditLog[]
+
+  @@map("users")
+}
+
+model StudentProfile {
+  id           String   @id @default(uuid())
+  userId       String   @unique
+  studentId    String   @unique
+  fullName     String
+  phone        String
+  dob          DateTime?
+  gender       String?
+  address      String?
+  city         String?
+  state        String?
+  pincode      String?
+  currentClass String
+  schoolName   String?
+  board        String?
+  guardianId   String?
+
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  guardian     Guardian?   @relation(fields: [guardianId], references: [id])
+  enrollments  Enrollment[]
+  submissions  AssignmentSubmission[]
+
+  @@map("student_profiles")
+}
+
+model TeacherProfile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  employeeId       String   @unique
+  fullName        String
+  phone           String
+  qualifications  String
+  bio             String?
+  experienceYears Int      @default(0)
+  subjectsTaught  String[]
+
+  user         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  batches      Batch[]
+  schedules    ClassSchedule[]
+  assignments  Assignment[]
+
+  @@map("teacher_profiles")
+}
+
+model Guardian {
+  id           String   @id @default(uuid())
+  name         String
+  relationship String
+  phone        String
+  email        String?
+
+  students     StudentProfile[]
+
+  @@map("guardians")
+}
+
+model Subject {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  code        String   @unique
+  description String?
+
+  @@map("subjects")
+}
+
+model Course {
+  id             String    @id @default(uuid())
+  title          String
+  slug           String    @unique
+  description    String
+  classGrade     String
+  subject        String
+  mode           ClassMode @default(HYBRID)
+  fee            Int
+  duration       String
+  timings        String?
+  seatsAvailable Int       @default(25)
+  maxSeats       Int       @default(25)
+  thumbnail      String?
+  syllabus       Json?
+  isActive       Boolean   @default(true)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  batches        Batch[]
+  applications   Application[]
+  materials      StudyMaterial[]
+  assignments    Assignment[]
+  enrollments    Enrollment[]
+
+  @@map("courses")
+}
+
+model Batch {
+  id          String    @id @default(uuid())
+  name        String
+  courseId    String
+  teacherId   String?
+  classGrade  String
+  daysOfWeek  String[]
+  startTime   String
+  endTime     String
+  mode        ClassMode @default(HYBRID)
+  maxStudents Int       @default(25)
+
+  course      Course          @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  teacher     TeacherProfile? @relation(fields: [teacherId], references: [id])
+  enrollments Enrollment[]
+  schedules   ClassSchedule[]
+  materials   StudyMaterial[]
+  assignments Assignment[]
+
+  @@map("batches")
+}
+
+model Enrollment {
+  id         String           @id @default(uuid())
+  studentId  String
+  batchId    String
+  courseId   String
+  status     EnrollmentStatus @default(ACTIVE)
+  enrolledAt DateTime         @default(now())
+
+  student    StudentProfile   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  batch      Batch            @relation(fields: [batchId], references: [id])
+  course     Course           @relation(fields: [courseId], references: [id])
+
+  @@unique([studentId, batchId])
+  @@map("enrollments")
+}
+
+model Application {
+  id                   String            @id @default(uuid())
+  applicationNumber    String            @unique
+  fullName             String
+  dob                  DateTime?
+  gender               String?
+  email                String
+  phone                String
+  whatsapp             String?
+  address              String
+  city                 String
+  state                String
+  pincode              String
+  currentClass         String
+  schoolName           String
+  board                String
+  previousMarks        String?
+  courseId             String?
+  preferredMode        ClassMode         @default(HYBRID)
+  preferredBatch       String?
+  guardianName         String
+  guardianRelationship String
+  guardianPhone        String
+  guardianEmail        String?
+  status               ApplicationStatus @default(PENDING)
+  adminNotes           String?
+  verificationPin      String
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime          @updatedAt
+
+  course  Course?                    @relation(fields: [courseId], references: [id])
+  history ApplicationStatusHistory[]
+
+  @@map("applications")
+}
+
+model ApplicationStatusHistory {
+  id            String            @id @default(uuid())
+  applicationId String
+  status        ApplicationStatus
+  notes         String?
+  changedBy     String?
+  changedAt     DateTime          @default(now())
+
+  application   Application       @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  @@map("application_status_history")
+}
+
+model ClassSchedule {
+  id          String    @id @default(uuid())
+  batchId     String
+  teacherId   String?
+  subject     String
+  topic       String
+  date        String
+  startTime   String
+  endTime     String
+  mode        ClassMode @default(ONLINE)
+  platform    String?   @default("Google Meet")
+  meetingUrl  String?
+  classroom   String?
+  status      String    @default("SCHEDULED")
+
+  batch       Batch           @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  teacher     TeacherProfile? @relation(fields: [teacherId], references: [id])
+  onlineClass OnlineClass?
+
+  @@map("class_schedules")
+}
+
+model OnlineClass {
+  id           String        @id @default(uuid())
+  scheduleId   String        @unique
+  topic        String
+  platform     String        @default("Google Meet")
+  meetingUrl   String
+  recordingUrl String?
+  notes        String?
+  isCompleted  Boolean       @default(false)
+
+  schedule     ClassSchedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+
+  @@map("online_classes")
+}
+
+model StudyMaterial {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  subject     String
+  courseId    String?
+  batchId     String?
+  fileUrl     String
+  fileType    String
+  size        String?
+  uploadedBy  String
+  createdAt   DateTime @default(now())
+
+  course      Course?  @relation(fields: [courseId], references: [id])
+  batch       Batch?   @relation(fields: [batchId], references: [id])
+
+  @@map("study_materials")
+}
+
+model Assignment {
+  id           String   @id @default(uuid())
+  title        String
+  instructions String
+  courseId     String
+  batchId      String?
+  teacherId    String?
+  dueDate      DateTime
+  questionsUrl String?
+  maxMarks     Int      @default(25)
+  createdAt    DateTime @default(now())
+
+  course       Course                 @relation(fields: [courseId], references: [id])
+  batch        Batch?                 @relation(fields: [batchId], references: [id])
+  teacher      TeacherProfile?        @relation(fields: [teacherId], references: [id])
+  submissions  AssignmentSubmission[]
+
+  @@map("assignments")
+}
+
+model AssignmentSubmission {
+  id            String   @id @default(uuid())
+  assignmentId  String
+  studentId     String
+  submissionUrl String?
+  fileName      String?
+  notes         String?
+  marksObtained Int?
+  feedback      String?
+  status        String   @default("SUBMITTED")
+  submittedAt   DateTime @default(now())
+
+  assignment    Assignment     @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  student       StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([assignmentId, studentId])
+  @@map("assignment_submissions")
+}
+
+model Announcement {
+  id             String   @id @default(uuid())
+  title          String
+  content        String
+  targetAudience String   @default("All Students")
+  author         String   @default("Administration")
+  createdAt      DateTime @default(now())
+
+  @@map("announcements")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  action    String
+  entity    String
+  entityId  String?
+  details   String?
+  ipAddress String?
+  createdAt DateTime @default(now())
+
+  user      User?    @relation(fields: [userId], references: [id])
+
+  @@map("audit_logs")
+}

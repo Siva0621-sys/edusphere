@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | EduSphere Learning Portal</title>
+  <meta name="description" content="Sign in to EduSphere student, teacher, or administrative tuition management portals.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body style="background:var(--bg-body);">
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon">E</div>
+        <div class="brand-name">
+          <span class="brand-name-main"><span class="institute-name">EduSphere</span></span>
+          <span class="brand-tagline-mini institute-tagline">Learn Better. Grow Smarter.</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="courses.html" class="nav-link">Courses</a>
+        <a href="admission.html" class="nav-link">Admission</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="admission.html" class="btn btn-primary btn-sm">Apply for Admission</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h2 id="authHeading">Portal Login</h2>
+        <p>Enter your credentials to access your tuition dashboard.</p>
+      </div>
+
+      <!-- Role Selector Tabs -->
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab-btn active" data-role="STUDENT">Student</button>
+        <button type="button" class="auth-tab-btn" data-role="TEACHER">Teacher</button>
+        <button type="button" class="auth-tab-btn" data-role="ADMIN">Admin</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Email Address <span class="required-star">*</span></label>
+          <div class="input-with-icon">
+            <svg class="input-icon" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
+            <input type="email" id="loginEmail" name="email" class="form-control" placeholder="you@edusphere.edu" required>
+          </div>
+          <div class="form-error-text">Please enter your registered email.</div>
+        </div>
+
+        <div class="form-group">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+            <label class="form-label" for="loginPassword" style="margin-bottom:0;">Password <span class="required-star">*</span></label>
+            <a href="forgot-password.html" style="font-size:0.82rem;color:var(--primary);">Forgot?</a>
+          </div>
+          <div class="input-with-icon">
+            <svg class="input-icon" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            <input type="password" id="loginPassword" name="password" class="form-control" placeholder="••••••••" required>
+          </div>
+          <div class="form-error-text">Please enter your password.</div>
+        </div>
+
+        <button type="submit" id="btnLoginSubmit" class="btn btn-primary btn-block btn-lg" style="margin-top:1.5rem;">
+          Sign In &rarr;
+        </button>
+      </form>
+
+      <!-- Quick Demo Login Chips -->
+      <div class="quick-demo-accounts">
+        <p>⚡ Quick Demo Access</p>
+        <div class="demo-chips">
+          <button type="button" class="demo-chip" id="demoStudentBtn">👤 Student</button>
+          <button type="button" class="demo-chip" id="demoTeacherBtn">👨‍🏫 Teacher</button>
+          <button type="button" class="demo-chip" id="demoAdminBtn">🛡️ Admin</button>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:2rem;font-size:0.9rem;color:var(--text-muted);">
+        New student seeking admission? 
+        <a href="admission.html" style="color:var(--primary);font-weight:600;">Apply Online</a>
+        or
+        <a href="register.html" style="color:var(--primary);font-weight:600;">Create Account</a>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    import { Auth } from './js/auth.js';
+    import { showToast } from './js/main.js';
+
+    let currentRole = 'STUDENT';
+    const emailInput = document.getElementById('loginEmail');
+    const passwordInput = document.getElementById('loginPassword');
+    const form = document.getElementById('loginForm');
+    const roleTabs = document.querySelectorAll('.auth-tab-btn');
+    const heading = document.getElementById('authHeading');
+
+    // Role Tab Switching
+    roleTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        roleTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentRole = tab.getAttribute('data-role');
+        heading.textContent = `${tab.textContent} Portal Login`;
+
+        if (currentRole === 'ADMIN') {
+          emailInput.placeholder = 'admin@edusphere.edu';
+        } else if (currentRole === 'TEACHER') {
+          emailInput.placeholder = 'sharma@edusphere.edu';
+        } else {
+          emailInput.placeholder = 'rahul@edusphere.edu';
+        }
+      });
+    });
+
+    // Quick Demo Chips
+    document.getElementById('demoStudentBtn').addEventListener('click', () => {
+      document.querySelector('[data-role="STUDENT"]').click();
+      emailInput.value = 'rahul@edusphere.edu';
+      passwordInput.value = 'Student@123';
+      showToast('Credentials Filled', 'Demo Student account ready to sign in.', 'info');
+    });
+
+    document.getElementById('demoTeacherBtn').addEventListener('click', () => {
+      document.querySelector('[data-role="TEACHER"]').click();
+      emailInput.value = 'sharma@edusphere.edu';
+      passwordInput.value = 'Teacher@123';
+      showToast('Credentials Filled', 'Demo Teacher account ready to sign in.', 'info');
+    });
+
+    document.getElementById('demoAdminBtn').addEventListener('click', () => {
+      document.querySelector('[data-role="ADMIN"]').click();
+      emailInput.value = 'admin@edusphere.edu';
+      passwordInput.value = 'Admin@123';
+      showToast('Credentials Filled', 'Demo Administrator account ready to sign in.', 'info');
+    });
+
+    // Form Submit
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!email || !password) {
+        showToast('Missing Credentials', 'Please provide both email and password.', 'error');
+        return;
+      }
+
+      const submitBtn = document.getElementById('btnLoginSubmit');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Authenticating...';
+
+      try {
+        const user = await Auth.login(email, password, currentRole);
+        showToast(`Welcome back, ${user.fullName}!`, 'Redirecting to your dashboard...', 'success');
+
+        setTimeout(() => {
+          if (user.role === 'ADMIN') window.location.href = 'admin-dashboard.html';
+          else if (user.role === 'TEACHER') window.location.href = 'teacher-dashboard.html';
+          else window.location.href = 'student-dashboard.html';
+        }, 800);
+
+      } catch (err) {
+        showToast('Login Failed', err.message || 'Invalid email or password.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Sign In &rarr;';
+      }
+    });
+  </script>
+</body>
+</html>

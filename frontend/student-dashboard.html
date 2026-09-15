@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portal | EduSphere Learning</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <!-- STUDENT SIDEBAR -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo-icon" style="width:32px;height:32px;font-size:0.95rem;">E</div>
+        <span class="sidebar-brand-name institute-name">EduSphere</span>
+        <span class="sidebar-badge">Student</span>
+      </div>
+
+      <div class="sidebar-menu">
+        <div class="sidebar-group-title">Learning Hub</div>
+        <button type="button" class="sidebar-item active" data-student-pane="studentPaneSchedule">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span>Live Classes & Timetable</span>
+        </button>
+
+        <button type="button" class="sidebar-item" data-student-pane="studentPaneCourses">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          <span>Enrolled Courses</span>
+        </button>
+
+        <button type="button" class="sidebar-item" data-student-pane="studentPaneMaterials">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          <span>Study Materials</span>
+        </button>
+
+        <button type="button" class="sidebar-item" data-student-pane="studentPaneAssignments">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+          <span>Assignments & Tests</span>
+        </button>
+
+        <button type="button" class="sidebar-item" data-student-pane="studentPaneAnnouncements">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+          <span>Notices & Updates</span>
+        </button>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-avatar" style="background:#0ea5e9;">RD</div>
+          <div class="user-info">
+            <div class="user-name student-name-display">Rahul Deshmukh</div>
+            <span class="user-role-badge" id="studentIdDisplay">STU-2026-042</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- STUDENT DASHBOARD MAIN -->
+    <div class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-mobile-toggle" id="studentSidebarToggle">&#9776;</button>
+          <div class="page-title-wrap">
+            <h1 id="topbarStudentTitle">Live Classes & Timetable</h1>
+            <p>Welcome back, <span class="student-name-display">Student</span>! Here is your daily schedule.</p>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <a href="index.html" class="btn btn-sm btn-outline">Institute Home</a>
+          <button id="studentLogoutBtn" class="btn btn-sm btn-primary">Logout</button>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        
+        <!-- PANE 1: SCHEDULE & LIVE ONLINE CLASSES -->
+        <div class="dashboard-pane active" id="studentPaneSchedule">
+          <div style="margin-bottom:1.5rem;">
+            <h3>Scheduled Classes Today</h3>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Join your online Google Meet sessions or check in-center classroom numbers.</p>
+          </div>
+
+          <div id="studentScheduleList">
+            <!-- Rendered dynamically by student.js -->
+          </div>
+        </div>
+
+        <!-- PANE 2: ENROLLED COURSES -->
+        <div class="dashboard-pane" id="studentPaneCourses">
+          <div style="margin-bottom:1.5rem;">
+            <h3>My Active Tuition Enrollments</h3>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Track your syllabus completion and course curriculum.</p>
+          </div>
+
+          <div id="studentCoursesList">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- PANE 3: STUDY MATERIALS -->
+        <div class="dashboard-pane" id="studentPaneMaterials">
+          <div style="margin-bottom:1.5rem;">
+            <h3>Downloadable Study Materials & Chapter Summaries</h3>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Handouts, formula sheets, and solved question sets provided by your instructors.</p>
+          </div>
+
+          <div id="studentMaterialsList">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- PANE 4: ASSIGNMENTS & HOMEWORK -->
+        <div class="dashboard-pane" id="studentPaneAssignments">
+          <div style="margin-bottom:1.5rem;">
+            <h3>Weekly Assignments & Assessments</h3>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Submit your homework solutions and review teacher remarks.</p>
+          </div>
+
+          <div id="studentAssignmentsList">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- PANE 5: ANNOUNCEMENTS -->
+        <div class="dashboard-pane" id="studentPaneAnnouncements">
+          <div style="margin-bottom:1.5rem;">
+            <h3>Institute Announcements & Alerts</h3>
+          </div>
+
+          <div id="studentAnnouncementsList">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ASSIGNMENT SUBMISSION MODAL -->
+  <div class="modal-backdrop" id="assignmentSubmitModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h3>Submit Assignment</h3>
+          <p id="modalAssignmentTitle" style="font-size:0.85rem;color:var(--text-muted);"></p>
+        </div>
+        <button class="modal-close" data-modal-close>&times;</button>
+      </div>
+      <form id="assignmentSubmitForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Upload Solution File (PDF, DOCX, or Image) <span class="required-star">*</span></label>
+            <input type="file" id="assignmentFile" class="form-control" accept=".pdf,.doc,.docx,.png,.jpg" required>
+            <div class="form-hint">Accepted formats: PDF, DOCX, PNG, JPG (Max: 15MB)</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Submission Notes / Comments</label>
+            <textarea id="assignmentNotes" class="form-control" placeholder="Add any notes about steps or specific questions solved..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary">Confirm Submission</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    import { Auth } from './js/auth.js';
+    import { initStudentDashboard } from './js/student.js';
+
+    document.getElementById('studentLogoutBtn')?.addEventListener('click', () => Auth.logout());
+    initStudentDashboard();
+  </script>
+</body>
+</html>

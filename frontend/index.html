@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduSphere — Smart Tuition & Online Learning</title>
+  <meta name="description" content="Personalized tuition, expert guidance, and flexible online and offline learning for every student. Class 8-12 CBSE, ICSE, and Competitive Exam Preparation.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Header & Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon">E</div>
+        <div class="brand-name">
+          <span class="brand-name-main"><span class="institute-name">EduSphere</span></span>
+          <span class="brand-tagline-mini institute-tagline">Learn Better. Grow Smarter.</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="courses.html" class="nav-link">Courses</a>
+        <a href="admission.html" class="nav-link">Admission</a>
+        <a href="application-status.html" class="nav-link">Track Status</a>
+        <a href="faculty.html" class="nav-link">Faculty</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Auth Actions & Mobile Toggle -->
+      <div class="nav-actions">
+        <div class="nav-auth-container">
+          <!-- Populated dynamically by main.js (Login / Apply Now / Portal) -->
+        </div>
+        <button class="mobile-menu-toggle" aria-label="Toggle Navigation Menu">&#9776;</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer">
+    <a href="index.html" class="mobile-nav-link">Home <span>&rarr;</span></a>
+    <a href="about.html" class="mobile-nav-link">About Us <span>&rarr;</span></a>
+    <a href="courses.html" class="mobile-nav-link">Tuition Courses <span>&rarr;</span></a>
+    <a href="admission.html" class="mobile-nav-link">Apply for Admission <span>&rarr;</span></a>
+    <a href="application-status.html" class="mobile-nav-link">Track Application <span>&rarr;</span></a>
+    <a href="faculty.html" class="mobile-nav-link">Our Faculty <span>&rarr;</span></a>
+    <a href="contact.html" class="mobile-nav-link">Contact & Support <span>&rarr;</span></a>
+    <div class="mobile-nav-actions">
+      <a href="login.html" class="btn btn-outline btn-block">Sign In</a>
+      <a href="admission.html" class="btn btn-primary btn-block">Apply for Admission</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-badge">
+              <span class="hero-badge-dot"></span>
+              Admissions Open for Academic Year 2026–2027
+            </div>
+            <h1 class="hero-title">
+              Unlock Your Potential With <span>Better Learning</span>
+            </h1>
+            <p class="hero-desc">
+              Personalized tuition, expert faculty guidance, small batch sizes, and flexible online & hybrid learning designed to help every student achieve their highest academic potential.
+            </p>
+            <div class="btn-group">
+              <a href="admission.html" class="btn btn-primary btn-lg">Apply for Admission &rarr;</a>
+              <a href="courses.html" class="btn btn-outline btn-lg">Explore Courses</a>
+            </div>
+
+            <div class="hero-stats">
+              <div class="hero-stat-item">
+                <h3>98.6%</h3>
+                <p>Board Exam Pass Rate</p>
+              </div>
+              <div class="hero-stat-item">
+                <h3>1:15</h3>
+                <p>Teacher to Student Ratio</p>
+              </div>
+              <div class="hero-stat-item">
+                <h3>2,500+</h3>
+                <p>Students Mentored</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Illustration Card -->
+          <div class="hero-visual">
+            <div class="hero-card-illustration">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+                <span class="badge badge-success">Live Class in Progress</span>
+                <span style="font-size:0.8rem;color:#a5b4fc;">Class 10 Physics</span>
+              </div>
+              <h3 style="font-size:1.4rem;color:#fff;margin-bottom:0.75rem;">Ray Optics: Refraction & Lens Formula</h3>
+              <p style="color:#c7d2fe;font-size:0.92rem;margin-bottom:1.5rem;">Interactive concept simulation with real-time doubt clearing by Dr. Ramesh Sharma.</p>
+              
+              <div style="background:rgba(255,255,255,0.08);border-radius:var(--radius-md);padding:1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+                <div style="display:flex;align-items:center;gap:0.75rem;">
+                  <div style="width:36px;height:36px;border-radius:50%;background:#4f46e5;display:flex;align-items:center;justify-content:center;font-weight:700;">RS</div>
+                  <div style="font-size:0.85rem;line-height:1.2;">
+                    <strong>Dr. Ramesh Sharma</strong>
+                    <div style="color:#94a3b8;font-size:0.75rem;">Senior Faculty</div>
+                  </div>
+                </div>
+                <span class="badge badge-primary">Google Meet</span>
+              </div>
+
+              <div class="hero-floating-card">
+                <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:#ecfdf5;color:#10b981;display:flex;align-items:center;justify-content:center;font-weight:700;">
+                  ✓
+                </div>
+                <div>
+                  <div style="font-weight:700;font-size:0.9rem;">Weekly Mock Test Result</div>
+                  <div style="font-size:0.8rem;color:var(--text-muted);">94% Average Batch Score</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="section section-subtle">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Why EduSphere</span>
+          <h2 class="section-title">Built for Serious Academic Achievement</h2>
+          <p class="section-subtitle">We combine traditional rigorous pedagogy with modern digital tools to ensure every concept is understood, not just memorized.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">👨‍🏫</div>
+            <h3 class="feature-title">Experienced Master Teachers</h3>
+            <p class="feature-desc">Learn directly from verified subject matter specialists, Ph.D. scholars, and former coaching experts with over 10+ years of proven teaching excellence.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">🎯</div>
+            <h3 class="feature-title">Personalized Small Batches</h3>
+            <p class="feature-desc">We cap each batch to maximum 20–25 students, ensuring every child receives individual mentorship, attention, and personalized feedback.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">💻</div>
+            <h3 class="feature-title">Flexible Online & Offline Modes</h3>
+            <p class="feature-desc">Attend classes at our state-of-the-art center or join live online via Google Meet/Zoom with crystal-clear audio, notes, and session recordings.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">📊</div>
+            <h3 class="feature-title">Regular Assessments & Tracking</h3>
+            <p class="feature-desc">Weekly chapter tests, monthly mock board exams, and comprehensive analytics help students and parents track growth continuously.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">💬</div>
+            <h3 class="feature-title">Dedicated Doubt-Clearing Clinics</h3>
+            <p class="feature-desc">Special 1-on-1 doubt clearing hours outside regular class schedules so no question remains unanswered before exams.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">📚</div>
+            <h3 class="feature-title">Curated Study Notes & Worksheets</h3>
+            <p class="feature-desc">Instant access to downloadable chapter summaries, formula cheat sheets, NCERT solutions, and previous 10-year question banks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED COURSES -->
+    <section class="section">
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1.5rem;">
+          <div>
+            <span class="section-badge">Programs</span>
+            <h2 class="section-title" style="margin-bottom:0.5rem;">Featured Tuition Courses</h2>
+            <p class="section-subtitle">Specially structured for CBSE, ICSE, and Competitive Foundation.</p>
+          </div>
+          <a href="courses.html" class="btn btn-outline-primary">View All Courses &rarr;</a>
+        </div>
+
+        <div class="grid-3" id="featuredCoursesGrid">
+          <!-- Dynamically populated or rendered fallback -->
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section section-dark">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge" style="background:rgba(255,255,255,0.1);color:#a5b4fc;">Simple 5-Step Process</span>
+          <h2 class="section-title">How Admission & Learning Works</h2>
+          <p class="section-subtitle" style="color:#94a3b8;">From application submission to classroom success in five seamless steps.</p>
+        </div>
+
+        <div class="grid-4" style="text-align:center;">
+          <div style="padding:1.5rem;background:#1e293b;border-radius:var(--radius-lg);border:1px solid #334155;">
+            <div style="font-size:2rem;font-weight:800;color:#6366f1;font-family:var(--font-heading);margin-bottom:0.75rem;">01</div>
+            <h4 style="font-size:1.15rem;margin-bottom:0.5rem;color:white;">Explore Courses</h4>
+            <p style="color:#94a3b8;font-size:0.9rem;">Browse our curriculum by class, subject, batch timing, and online/offline learning preferences.</p>
+          </div>
+
+          <div style="padding:1.5rem;background:#1e293b;border-radius:var(--radius-lg);border:1px solid #334155;">
+            <div style="font-size:2rem;font-weight:800;color:#6366f1;font-family:var(--font-heading);margin-bottom:0.75rem;">02</div>
+            <h4 style="font-size:1.15rem;margin-bottom:0.5rem;color:white;">Apply Online</h4>
+            <p style="color:#94a3b8;font-size:0.9rem;">Submit your academic details and preferences in our 2-minute online admission form.</p>
+          </div>
+
+          <div style="padding:1.5rem;background:#1e293b;border-radius:var(--radius-lg);border:1px solid #334155;">
+            <div style="font-size:2rem;font-weight:800;color:#6366f1;font-family:var(--font-heading);margin-bottom:0.75rem;">03</div>
+            <h4 style="font-size:1.15rem;margin-bottom:0.5rem;color:white;">Review & Approval</h4>
+            <p style="color:#94a3b8;font-size:0.9rem;">Our academic counselor verifies your details and assigns your personalized batch and student ID.</p>
+          </div>
+
+          <div style="padding:1.5rem;background:#1e293b;border-radius:var(--radius-lg);border:1px solid #334155;">
+            <div style="font-size:2rem;font-weight:800;color:#6366f1;font-family:var(--font-heading);margin-bottom:0.75rem;">04</div>
+            <h4 style="font-size:1.15rem;margin-bottom:0.5rem;color:white;">Join Classes & Excel</h4>
+            <p style="color:#94a3b8;font-size:0.9rem;">Log in to your student dashboard, join live classes with one click, and access study materials.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS & SAMPLE SUCCESS HIGHLIGHTS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Student & Parent Feedback</span>
+          <h2 class="section-title">Trusted by Hundreds of Families</h2>
+          <p class="section-subtitle">Real experiences and verified feedback from our tuition learning community.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card" style="padding:2rem;">
+            <div style="color:#f59e0b;font-size:1.2rem;margin-bottom:1rem;">★★★★★</div>
+            <p style="font-style:italic;color:var(--text-main);margin-bottom:1.5rem;line-height:1.6;">
+              "The structured approach for Class 10 Board exams was phenomenal. Dr. Sharma made Physics concepts crystal clear. My daughter scored 96% in Science."
+            </p>
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div style="width:42px;height:42px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;">
+                MK
+              </div>
+              <div>
+                <strong style="font-size:0.95rem;">Meenakshi Krishnan</strong>
+                <div style="font-size:0.8rem;color:var(--text-muted);">Parent of Class 10 Student</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:2rem;">
+            <div style="color:#f59e0b;font-size:1.2rem;margin-bottom:1rem;">★★★★★</div>
+            <p style="font-style:italic;color:var(--text-main);margin-bottom:1.5rem;line-height:1.6;">
+              "The online classes with Google Meet were so convenient. I could ask doubts anytime, and the study materials and weekly worksheets kept me completely on schedule."
+            </p>
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div style="width:42px;height:42px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;">
+                AR
+              </div>
+              <div>
+                <strong style="font-size:0.95rem;">Aditya Roy</strong>
+                <div style="font-size:0.8rem;color:var(--text-muted);">Class 12 Physics & Chemistry</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:2rem;">
+            <div style="color:#f59e0b;font-size:1.2rem;margin-bottom:1rem;">★★★★★</div>
+            <p style="font-style:italic;color:var(--text-main);margin-bottom:1.5rem;line-height:1.6;">
+              "Small batches make a huge difference. In school teachers don't have time for everyone, but here every child gets personal coaching and attention."
+            </p>
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div style="width:42px;height:42px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;">
+                SG
+              </div>
+              <div>
+                <strong style="font-size:0.95rem;">Sunil Gupta</strong>
+                <div style="font-size:0.8rem;color:var(--text-muted);">Parent of Class 9 Student</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="section section-subtle">
+      <div class="container" style="max-width:860px;">
+        <div class="section-header">
+          <span class="section-badge">FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Everything you need to know about our admission, fees, and learning modes.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <details style="background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:1.25rem 1.5rem;cursor:pointer;">
+            <summary style="font-weight:700;font-size:1.05rem;color:var(--text-main);">How do I apply for tuition admission?</summary>
+            <p style="color:var(--text-muted);font-size:0.95rem;margin-top:0.75rem;line-height:1.6;">
+              Simply click the "Apply for Admission" button, fill in your student and academic preferences in the multi-step form, and submit. You will receive a unique Application ID to track your admission status in real-time.
+            </p>
+          </details>
+
+          <details style="background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:1.25rem 1.5rem;cursor:pointer;">
+            <summary style="font-weight:700;font-size:1.05rem;color:var(--text-main);">Can I choose between online and offline classes?</summary>
+            <p style="color:var(--text-muted);font-size:0.95rem;margin-top:0.75rem;line-height:1.6;">
+              Yes! We offer 100% Online, In-Center Offline, and Hybrid options. Students who enroll in Hybrid can attend in person or switch to live Google Meet sessions whenever needed.
+            </p>
+          </details>
+
+          <details style="background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:1.25rem 1.5rem;cursor:pointer;">
+            <summary style="font-weight:700;font-size:1.05rem;color:var(--text-main);">What is the average batch size?</summary>
+            <p style="color:var(--text-muted);font-size:0.95rem;margin-top:0.75rem;line-height:1.6;">
+              We maintain strict limits of 15 to 25 students per batch depending on the grade and subject, ensuring the teacher can engage directly with every student.
+            </p>
+          </details>
+
+          <details style="background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:1.25rem 1.5rem;cursor:pointer;">
+            <summary style="font-weight:700;font-size:1.05rem;color:var(--text-main);">Are study materials and test series included in the fee?</summary>
+            <p style="color:var(--text-muted);font-size:0.95rem;margin-top:0.75rem;line-height:1.6;">
+              Yes, all enrolled students receive digital study notes, formula sheets, weekly homework worksheets, and full access to our periodic mock test series at no extra charge.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="section" style="background:linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);color:white;text-align:center;">
+      <div class="container" style="max-width:750px;">
+        <h2 style="font-size:2.5rem;color:white;margin-bottom:1rem;">Ready to Accelerate Your Academic Journey?</h2>
+        <p style="font-size:1.15rem;color:#c7d2fe;margin-bottom:2rem;line-height:1.6;">
+          Join our high-achieving student community. Admissions are open for upcoming batches with limited seats available.
+        </p>
+        <div class="btn-group" style="justify-content:center;">
+          <a href="admission.html" class="btn btn-accent btn-lg">Apply for Admission Today</a>
+          <a href="contact.html" class="btn btn-outline-white btn-lg">Contact Admissions Desk</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color:white;">
+            <div class="brand-logo-icon">E</div>
+            <span class="institute-name">EduSphere</span>
+          </div>
+          <p class="institute-tagline">
+            Learn Better. Grow Smarter. Achieve More.
+          </p>
+          <div class="social-links">
+            <a href="https://youtube.com" target="_blank" class="social-link" aria-label="YouTube">▶</a>
+            <a href="https://facebook.com" target="_blank" class="social-link" aria-label="Facebook">f</a>
+            <a href="https://instagram.com" target="_blank" class="social-link" aria-label="Instagram">📸</a>
+            <a href="https://linkedin.com" target="_blank" class="social-link" aria-label="LinkedIn">in</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Institute</a></li>
+            <li><a href="courses.html">Tuition Courses</a></li>
+            <li><a href="admission.html">Apply for Admission</a></li>
+            <li><a href="application-status.html">Track Application</a></li>
+            <li><a href="faculty.html">Faculty Profiles</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Portals</h4>
+          <ul class="footer-links">
+            <li><a href="login.html">Student Login</a></li>
+            <li><a href="login.html">Teacher Login</a></li>
+            <li><a href="login.html">Admin Portal</a></li>
+            <li><a href="student-dashboard.html">Student Dashboard</a></li>
+            <li><a href="teacher-dashboard.html">Teacher Dashboard</a></li>
+            <li><a href="admin-dashboard.html">Admin Console</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Contact & Office</h4>
+          <div class="footer-contact-item">
+            <span>📍</span>
+            <span class="institute-address">Plot 45, Knowledge Boulevard, Bengaluru</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>📞</span>
+            <a href="tel:+919876543210" class="institute-phone">+91 98765 43210</a>
+          </div>
+          <div class="footer-contact-item">
+            <span>💬</span>
+            <a href="https://wa.me/919876543210" target="_blank" class="institute-whatsapp">WhatsApp Desk</a>
+          </div>
+          <div class="footer-contact-item">
+            <span>✉️</span>
+            <a href="mailto:admissions@edusphere.edu" class="institute-email">admissions@edusphere.edu</a>
+          </div>
+          <div class="footer-contact-item">
+            <span>🕒</span>
+            <span class="institute-hours">Mon–Sat: 9:00 AM – 8:00 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <span class="institute-name">EduSphere</span>. All rights reserved. Professional Tuition Institute Management.
+        </div>
+        <div style="display:flex;gap:1.5rem;">
+          <a href="contact.html">Privacy Policy</a>
+          <a href="contact.html">Terms of Service</a>
+          <a href="contact.html">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    import { API } from './js/api.js';
+    import { createCourseCard } from './js/courses.js';
+
+    // Populate Featured Courses Grid
+    async function loadFeaturedCourses() {
+      const grid = document.getElementById('featuredCoursesGrid');
+      if (!grid) return;
+      const courses = await API.getCourses();
+      grid.innerHTML = courses.slice(0, 3).map(createCourseCard).join('');
+    }
+    loadFeaturedCourses();
+  </script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | EduSphere Institute Management</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <!-- ADMIN SIDEBAR -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo-icon" style="width:32px;height:32px;font-size:0.95rem;">E</div>
+        <span class="sidebar-brand-name institute-name">EduSphere</span>
+        <span class="sidebar-badge">Admin</span>
+      </div>
+
+      <div class="sidebar-menu">
+        <div class="sidebar-group-title">Operations</div>
+        <button type="button" class="sidebar-item active" data-admin-pane="paneOverview">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+          <span>Dashboard Overview</span>
+        </button>
+
+        <button type="button" class="sidebar-item" data-admin-pane="paneApplications">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          <span>Admission Pipeline</span>
+        </button>
+
+        <button type="button" class="sidebar-item" data-admin-pane="paneCourses">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          <span>Course Management</span>
+        </button>
+
+        <button type="button" class="sidebar-item" data-admin-pane="paneTeachers">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+          <span>Faculty Directory</span>
+        </button>
+
+        <div class="sidebar-group-title">Communication & Config</div>
+        <button type="button" class="sidebar-item" data-admin-pane="paneAnnouncements">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+          <span>Announcements</span>
+        </button>
+
+        <button type="button" class="sidebar-item" data-admin-pane="paneBranding">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          <span>Institute Branding</span>
+        </button>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-avatar">AD</div>
+          <div class="user-info">
+            <div class="user-name" id="adminUserName">Chief Administrator</div>
+            <span class="user-role-badge">Super Admin</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD CONTENT AREA -->
+    <div class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-mobile-toggle" id="adminSidebarToggle">&#9776;</button>
+          <div class="page-title-wrap">
+            <h1 id="topbarPageTitle">Dashboard Overview</h1>
+            <p>Real-time institute operations and academic indicators</p>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <a href="index.html" class="btn btn-sm btn-outline" target="_blank">View Website</a>
+          <button id="adminLogoutBtn" class="btn btn-sm btn-primary">Logout</button>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        
+        <!-- PANE 1: OVERVIEW -->
+        <div class="dashboard-pane active" id="paneOverview">
+          <!-- KPI Metrics Grid -->
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-icon-box icon-blue">📝</div>
+              <div class="metric-data">
+                <h4 id="metricTotalApps">3</h4>
+                <p>Total Applications</p>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box icon-amber">⏳</div>
+              <div class="metric-data">
+                <h4 id="metricPendingApps">1</h4>
+                <p>Pending Review</p>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box icon-emerald">🎓</div>
+              <div class="metric-data">
+                <h4 id="metricApprovedStudents">13</h4>
+                <p>Active Students</p>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box icon-purple">👨‍🏫</div>
+              <div class="metric-data">
+                <h4 id="metricTotalTeachers">4</h4>
+                <p>Active Faculty</p>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box icon-rose">📚</div>
+              <div class="metric-data">
+                <h4 id="metricTotalCourses">6</h4>
+                <p>Offered Programs</p>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box icon-blue">⏰</div>
+              <div class="metric-data">
+                <h4 id="metricTodayClasses">3</h4>
+                <p>Today's Classes</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions & Pipeline Summary -->
+          <div class="grid-2" style="margin-bottom:2rem;">
+            <div class="card" style="padding:1.75rem;">
+              <h3 style="font-size:1.25rem;margin-bottom:0.75rem;">Quick Operations</h3>
+              <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+                <button class="btn btn-primary btn-sm" onclick="document.querySelector('[data-admin-pane=paneApplications]').click();">
+                  Review Pending Applications
+                </button>
+                <button class="btn btn-outline btn-sm" onclick="document.querySelector('[data-admin-pane=paneCourses]').click();">
+                  Add New Course
+                </button>
+                <button class="btn btn-outline btn-sm" onclick="document.querySelector('[data-admin-pane=paneAnnouncements]').click();">
+                  Post Announcement
+                </button>
+              </div>
+            </div>
+
+            <div class="card" style="padding:1.75rem;">
+              <h3 style="font-size:1.25rem;margin-bottom:0.5rem;">Academic Session Status</h3>
+              <p style="color:var(--text-muted);font-size:0.92rem;margin-bottom:0.75rem;">
+                Term 1 Active: All digital classrooms and attendance logs operational.
+              </p>
+              <span class="badge badge-success">System Healthy • Postgres Connected</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANE 2: ADMISSION PIPELINE -->
+        <div class="dashboard-pane" id="paneApplications">
+          <div class="table-card">
+            <div class="table-toolbar">
+              <div class="table-search-box">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <input type="text" id="appSearchInput" placeholder="Search applicant, ID, email, or course...">
+              </div>
+
+              <div class="table-filters">
+                <select id="appStatusFilter" class="form-control" style="width:auto;padding:0.45rem 2rem 0.45rem 1rem;font-size:0.85rem;">
+                  <option value="">All Statuses</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Under Review">Under Review</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Waitlisted">Waitlisted</option>
+                  <option value="Rejected">Rejected</option>
+                </select>
+
+                <button id="btnExportApplicationsCsv" class="btn btn-sm btn-outline">
+                  Export CSV
+                </button>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Ref ID</th>
+                    <th>Applicant Details</th>
+                    <th>Class & Board</th>
+                    <th>Applied Course</th>
+                    <th>Status</th>
+                    <th>Submitted</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="applicationsTableBody">
+                  <!-- Rendered dynamically by admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANE 3: COURSE MANAGEMENT -->
+        <div class="dashboard-pane" id="paneCourses">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+            <h3>Active Tuition Courses & Programs</h3>
+            <button class="btn btn-primary btn-sm" id="btnOpenCreateCourseModal">
+              + Add New Course
+            </button>
+          </div>
+          <div id="adminCoursesList">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- PANE 4: TEACHERS & FACULTY -->
+        <div class="dashboard-pane" id="paneTeachers">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+            <h3>Academic Faculty Members</h3>
+          </div>
+          <div id="adminTeachersList">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- PANE 5: ANNOUNCEMENTS -->
+        <div class="dashboard-pane" id="paneAnnouncements">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+            <h3>Announcements & Broadcast Notices</h3>
+            <button class="btn btn-primary btn-sm" id="btnOpenAnnounceModal">
+              + Post New Announcement
+            </button>
+          </div>
+          <div id="adminAnnouncementsList">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- PANE 6: INSTITUTE BRANDING CONFIGURATION -->
+        <div class="dashboard-pane" id="paneBranding">
+          <div class="card" style="padding:2rem;max-width:800px;">
+            <div style="margin-bottom:1.75rem;padding-bottom:1rem;border-bottom:1px solid var(--border-color);">
+              <h3 style="font-size:1.35rem;margin-bottom:0.25rem;">Institute Identity & Branding</h3>
+              <p style="font-size:0.9rem;color:var(--text-muted);">
+                Update your tuition institute branding. Changes reflect instantly on the public website and headers.
+              </p>
+            </div>
+
+            <form id="brandingSettingsForm">
+              <div class="grid-2">
+                <div class="form-group">
+                  <label class="form-label">Institute Name</label>
+                  <input type="text" id="brandNameInput" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Tagline</label>
+                  <input type="text" id="brandTaglineInput" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label class="form-label">Contact Phone</label>
+                  <input type="text" id="brandPhoneInput" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">WhatsApp Number</label>
+                  <input type="text" id="brandWhatsappInput" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label class="form-label">Admissions Email</label>
+                  <input type="email" id="brandEmailInput" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Theme Primary Color</label>
+                  <input type="color" id="brandColorInput" class="form-control" style="height:46px;cursor:pointer;">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Campus Physical Address</label>
+                <input type="text" id="brandAddressInput" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Working Hours</label>
+                <input type="text" id="brandHoursInput" class="form-control" required>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg">
+                Save & Apply Branding
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATION REVIEW MODAL -->
+  <div class="modal-backdrop" id="applicationReviewModal">
+    <div class="modal-dialog" style="max-width:700px;">
+      <div class="modal-header">
+        <div>
+          <h3 style="font-size:1.25rem;">Application Review: <span id="modalAppId" style="color:var(--primary);"></span></h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);" id="modalAppName"></p>
+        </div>
+        <button class="modal-close" data-modal-close>&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="grid-2" style="margin-bottom:1.5rem;font-size:0.9rem;">
+          <div><strong>Email:</strong> <span id="modalAppEmail"></span></div>
+          <div><strong>Phone:</strong> <span id="modalAppPhone"></span></div>
+          <div><strong>DOB / Gender:</strong> <span id="modalAppDob"></span> (<span id="modalAppGender"></span>)</div>
+          <div><strong>Class & Board:</strong> <span id="modalAppClass"></span></div>
+          <div><strong>School:</strong> <span id="modalAppSchool"></span></div>
+          <div><strong>Course:</strong> <span id="modalAppCourse"></span></div>
+          <div><strong>Mode & Batch:</strong> <span id="modalAppMode"></span></div>
+          <div><strong>Guardian:</strong> <span id="modalAppGuardian"></span></div>
+        </div>
+
+        <div style="font-size:0.9rem;margin-bottom:1.5rem;">
+          <strong>Address:</strong> <span id="modalAppAddress"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Evaluation Notes & Decision Remarks</label>
+          <textarea id="modalAppNotes" class="form-control" placeholder="Add administrative notes, batch assignment, or interview notes..."></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;">
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-outline" id="btnWaitlistApp">Waitlist</button>
+          <button type="button" class="btn btn-sm btn-outline" id="btnRejectApp" style="color:var(--danger);border-color:var(--danger);">Reject</button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-outline" id="btnReviewApp">Mark Under Review</button>
+          <button type="button" class="btn btn-sm btn-primary" id="btnApproveApp">✓ Approve Admission</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREATE COURSE MODAL -->
+  <div class="modal-backdrop" id="createCourseModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Add Tuition Course</h3>
+        <button class="modal-close" data-modal-close>&times;</button>
+      </div>
+      <form id="createCourseForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Course Title <span class="required-star">*</span></label>
+            <input type="text" name="courseTitle" class="form-control" placeholder="e.g. Class 11 Chemistry Board Mastery" required>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Class / Grade <span class="required-star">*</span></label>
+              <select name="courseClass" class="form-control" required>
+                <option value="Class 9">Class 9</option>
+                <option value="Class 10">Class 10</option>
+                <option value="Class 11">Class 11</option>
+                <option value="Class 12">Class 12</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Subject <span class="required-star">*</span></label>
+              <input type="text" name="courseSubject" class="form-control" placeholder="e.g. Physics" required>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Mode <span class="required-star">*</span></label>
+              <select name="courseMode" class="form-control" required>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Online">Online Only</option>
+                <option value="Offline">Offline Center</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Monthly Fee (₹) <span class="required-star">*</span></label>
+              <input type="number" name="courseFee" class="form-control" placeholder="3500" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Course Description</label>
+            <textarea name="courseDesc" class="form-control" placeholder="Comprehensive syllabus details..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Course</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- PUBLISH ANNOUNCEMENT MODAL -->
+  <div class="modal-backdrop" id="publishAnnouncementModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Publish Announcement</h3>
+        <button class="modal-close" data-modal-close>&times;</button>
+      </div>
+      <form id="publishAnnouncementForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Announcement Title <span class="required-star">*</span></label>
+            <input type="text" name="annTitle" class="form-control" placeholder="e.g. Test Schedule Update" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Target Audience <span class="required-star">*</span></label>
+            <select name="annTarget" class="form-control" required>
+              <option value="All Students">All Students</option>
+              <option value="Class 10 Batches">Class 10 Batches</option>
+              <option value="Class 12 Batches">Class 12 Batches</option>
+              <option value="Faculty Only">Faculty Only</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Message Content <span class="required-star">*</span></label>
+            <textarea name="annContent" class="form-control" placeholder="Detailed message..." required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary">Broadcast Notice</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    import { Auth } from './js/auth.js';
+    import { openModal } from './js/main.js';
+    import { initAdminDashboard } from './js/admin.js';
+
+    document.getElementById('adminLogoutBtn')?.addEventListener('click', () => Auth.logout());
+    document.getElementById('btnOpenCreateCourseModal')?.addEventListener('click', () => openModal('createCourseModal'));
+    document.getElementById('btnOpenAnnounceModal')?.addEventListener('click', () => openModal('publishAnnouncementModal'));
+
+    initAdminDashboard();
+  </script>
+</body>
+</html>

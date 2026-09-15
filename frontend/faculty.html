@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty & Mentors | EduSphere</title>
+  <meta name="description" content="Meet the distinguished faculty at EduSphere. Experienced teachers, Ph.D. scholars, and competitive exam mentors for Class 8-12.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon">E</div>
+        <div class="brand-name">
+          <span class="brand-name-main"><span class="institute-name">EduSphere</span></span>
+          <span class="brand-tagline-mini institute-tagline">Learn Better. Grow Smarter.</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="courses.html" class="nav-link">Courses</a>
+        <a href="admission.html" class="nav-link">Admission</a>
+        <a href="application-status.html" class="nav-link">Track Status</a>
+        <a href="faculty.html" class="nav-link active">Faculty</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="nav-auth-container"></div>
+        <button class="mobile-menu-toggle" aria-label="Toggle Navigation Menu">&#9776;</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer">
+    <a href="index.html" class="mobile-nav-link">Home <span>&rarr;</span></a>
+    <a href="about.html" class="mobile-nav-link">About Us <span>&rarr;</span></a>
+    <a href="courses.html" class="mobile-nav-link">Tuition Courses <span>&rarr;</span></a>
+    <a href="admission.html" class="mobile-nav-link">Apply for Admission <span>&rarr;</span></a>
+    <a href="application-status.html" class="mobile-nav-link">Track Application <span>&rarr;</span></a>
+    <a href="faculty.html" class="mobile-nav-link active">Our Faculty <span>&rarr;</span></a>
+    <a href="contact.html" class="mobile-nav-link">Contact & Support <span>&rarr;</span></a>
+    <div class="mobile-nav-actions">
+      <a href="login.html" class="btn btn-outline btn-block">Sign In</a>
+      <a href="admission.html" class="btn btn-primary btn-block">Apply for Admission</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- PAGE HEADER -->
+    <section class="section-sm" style="background:linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(14, 165, 233, 0.06) 100%);border-bottom:1px solid var(--border-color);text-align:center;">
+      <div class="container" style="max-width:750px;">
+        <span class="section-badge">Academic Team</span>
+        <h1 style="font-size:2.6rem;margin-bottom:0.75rem;">Meet Our Distinguished Faculty</h1>
+        <p style="font-size:1.05rem;color:var(--text-muted);">
+          Our educators bring decades of combined classroom experience, subject mastery, and empathetic mentoring to help every student succeed.
+        </p>
+      </div>
+    </section>
+
+    <!-- FACULTY GRID -->
+    <section class="section">
+      <div class="container">
+        <div class="grid-2" id="facultyGridContainer">
+          <!-- Populated dynamically by script below -->
+        </div>
+      </div>
+    </section>
+
+    <!-- JOIN OUR TEAM / ADMISSION CTA -->
+    <section class="section section-dark" style="text-align:center;">
+      <div class="container" style="max-width:700px;">
+        <h2 style="font-size:2.3rem;color:white;margin-bottom:1rem;">Experience the Difference of Expert Mentorship</h2>
+        <p style="color:#c7d2fe;font-size:1.1rem;margin-bottom:2rem;line-height:1.6;">
+          Schedule a personalized academic consultation or enroll directly in your teacher's upcoming batch.
+        </p>
+        <div class="btn-group" style="justify-content:center;">
+          <a href="admission.html" class="btn btn-accent btn-lg">Apply for Admission</a>
+          <a href="courses.html" class="btn btn-outline-white btn-lg">Explore Batches</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 <span class="institute-name">EduSphere</span>. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    import { API } from './js/api.js';
+
+    async function loadFaculty() {
+      const container = document.getElementById('facultyGridContainer');
+      if (!container) return;
+
+      const teachers = await API.getTeachers();
+
+      container.innerHTML = teachers.map(t => {
+        const initials = t.fullName.split(' ').map(n => n[0]).join('').substring(0, 2);
+
+        return `
+          <div class="card card-hover" style="padding:2.25rem;display:flex;flex-direction:column;justify-content:space-between;">
+            <div>
+              <div style="display:flex;align-items:center;gap:1.25rem;margin-bottom:1.5rem;">
+                <div style="width:72px;height:72px;border-radius:var(--radius-full);background:var(--primary-gradient);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.5rem;box-shadow:var(--shadow-md);">
+                  ${initials}
+                </div>
+                <div>
+                  <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.2rem;">
+                    <h3 style="font-size:1.35rem;">${t.fullName}</h3>
+                    <span class="badge badge-success">Verified</span>
+                  </div>
+                  <p style="color:var(--primary);font-weight:600;font-size:0.9rem;">${t.subjects.join(' & ')} Specialist</p>
+                  <p style="color:var(--text-muted);font-size:0.82rem;">${t.qualification}</p>
+                </div>
+              </div>
+
+              <p style="color:var(--text-muted);font-size:0.95rem;line-height:1.65;margin-bottom:1.5rem;">
+                ${t.bio}
+              </p>
+
+              <div style="background:var(--bg-subtle);padding:1rem 1.25rem;border-radius:var(--radius-md);margin-bottom:1.5rem;">
+                <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;color:var(--text-muted);letter-spacing:0.05em;display:block;margin-bottom:0.35rem;">Assigned Programs</span>
+                <span style="font-size:0.9rem;font-weight:600;color:var(--text-main);">${t.assignedCourses.join(', ')}</span>
+              </div>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-color);padding-top:1.25rem;">
+              <span style="font-size:0.85rem;color:var(--text-muted);">${t.email}</span>
+              <a href="admission.html" class="btn btn-sm btn-primary">Join Teacher's Batch</a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    loadFaculty();
+  </script>
+</body>
+</html>

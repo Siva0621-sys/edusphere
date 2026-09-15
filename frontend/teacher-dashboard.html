@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Portal | EduSphere</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <!-- TEACHER SIDEBAR -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo-icon" style="width:32px;height:32px;font-size:0.95rem;">E</div>
+        <span class="sidebar-brand-name institute-name">EduSphere</span>
+        <span class="sidebar-badge" style="background:#8b5cf6;">Faculty</span>
+      </div>
+
+      <div class="sidebar-menu">
+        <div class="sidebar-group-title">Classroom Operations</div>
+        <button type="button" class="sidebar-item active" data-teacher-pane="teacherPaneClasses">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+          <span>Online Classes & Timetable</span>
+        </button>
+
+        <button type="button" class="sidebar-item" data-teacher-pane="teacherPaneMaterials">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+          <span>Study Materials</span>
+        </button>
+
+        <button type="button" class="sidebar-item" data-teacher-pane="teacherPaneAssignments">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+          <span>Assignments & Grading</span>
+        </button>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-avatar" style="background:#8b5cf6;">RS</div>
+          <div class="user-info">
+            <div class="user-name teacher-name-display">Dr. Ramesh Sharma</div>
+            <span class="user-role-badge">Lead Faculty (Physics)</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- TEACHER MAIN CONTENT -->
+    <div class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-mobile-toggle" id="teacherSidebarToggle">&#9776;</button>
+          <div class="page-title-wrap">
+            <h1 id="topbarTeacherTitle">Online Classes & Schedule</h1>
+            <p>Welcome, <span class="teacher-name-display">Faculty</span>. Manage batches, start classes, and evaluate submissions.</p>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <a href="index.html" class="btn btn-sm btn-outline">Institute Home</a>
+          <button id="teacherLogoutBtn" class="btn btn-sm btn-primary">Logout</button>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        
+        <!-- PANE 1: SCHEDULE & START ONLINE CLASS -->
+        <div class="dashboard-pane active" id="teacherPaneClasses">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+            <div>
+              <h3>Scheduled Tuition Sessions</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem;">Launch Google Meet sessions or manage room assignments.</p>
+            </div>
+            <button class="btn btn-primary btn-sm" id="btnOpenCreateClassModal">
+              + Schedule Online Class
+            </button>
+          </div>
+
+          <div id="teacherClassesList">
+            <!-- Rendered dynamically by teacher.js -->
+          </div>
+        </div>
+
+        <!-- PANE 2: STUDY MATERIALS -->
+        <div class="dashboard-pane" id="teacherPaneMaterials">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+            <div>
+              <h3>Study Materials Repository</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem;">Upload lecture slides, solved formula sheets, and worksheets for students.</p>
+            </div>
+            <button class="btn btn-primary btn-sm" id="btnOpenUploadMatModal">
+              + Upload Study Material
+            </button>
+          </div>
+
+          <div id="teacherMaterialsList">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- PANE 3: ASSIGNMENTS & GRADING -->
+        <div class="dashboard-pane" id="teacherPaneAssignments">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+            <div>
+              <h3>Course Assignments & Grading</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem;">Create homework problem sets, set deadlines, and evaluate student work.</p>
+            </div>
+            <button class="btn btn-primary btn-sm" id="btnOpenCreateAssignModal">
+              + Create Assignment
+            </button>
+          </div>
+
+          <div id="teacherAssignmentsList">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHEDULE ONLINE CLASS MODAL -->
+  <div class="modal-backdrop" id="createClassModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Schedule Online / Hybrid Class</h3>
+        <button class="modal-close" data-modal-close>&times;</button>
+      </div>
+      <form id="createClassForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Subject <span class="required-star">*</span></label>
+            <input type="text" name="classSubject" class="form-control" placeholder="e.g. Physics" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Session Topic <span class="required-star">*</span></label>
+            <input type="text" name="classTopic" class="form-control" placeholder="e.g. Ray Optics Numerical Workshop" required>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Target Batch <span class="required-star">*</span></label>
+              <select name="classBatch" class="form-control" required>
+                <option value="Batch 10-A (CBSE)">Batch 10-A (CBSE)</option>
+                <option value="Batch 12-JEE Physics">Batch 12-JEE Physics</option>
+                <option value="Batch 9-Foundation">Batch 9-Foundation</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Mode <span class="required-star">*</span></label>
+              <select name="classMode" class="form-control" required>
+                <option value="Online">Online (Video Meet)</option>
+                <option value="Offline">In-Center (Room 102)</option>
+                <option value="Hybrid">Hybrid Session</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Date <span class="required-star">*</span></label>
+              <input type="text" name="classDate" class="form-control" placeholder="Today / 2026-09-18" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Timings <span class="required-star">*</span></label>
+              <input type="text" name="classTime" class="form-control" placeholder="05:00 PM - 06:30 PM" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Google Meet / Zoom Meeting URL</label>
+            <input type="url" name="classMeetingUrl" class="form-control" placeholder="https://meet.google.com/xyz-abcd-efg" value="https://meet.google.com/edu-sph-live">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish Class Schedule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- UPLOAD MATERIAL MODAL -->
+  <div class="modal-backdrop" id="uploadMaterialModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Upload Study Material</h3>
+        <button class="modal-close" data-modal-close>&times;</button>
+      </div>
+      <form id="uploadMaterialForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Title / Document Name <span class="required-star">*</span></label>
+            <input type="text" name="matTitle" class="form-control" placeholder="e.g. Chapter 03 Formula Cheat Sheet" required>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Subject</label>
+              <input type="text" name="matSubject" class="form-control" placeholder="Physics">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Program</label>
+              <input type="text" name="matCourse" class="form-control" placeholder="Class 10 CBSE Board Mastery">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Choose Document (PDF, DOCX, PPTX) <span class="required-star">*</span></label>
+            <input type="file" id="materialFileInput" class="form-control" accept=".pdf,.doc,.docx,.ppt,.pptx" required>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary">Upload & Share</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CREATE ASSIGNMENT MODAL -->
+  <div class="modal-backdrop" id="createAssignmentModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Create New Assignment</h3>
+        <button class="modal-close" data-modal-close>&times;</button>
+      </div>
+      <form id="createAssignmentForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Assignment Title <span class="required-star">*</span></label>
+            <input type="text" name="assignTitle" class="form-control" placeholder="e.g. Lens Formula Numerical Problems" required>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Due Date <span class="required-star">*</span></label>
+              <input type="date" name="assignDueDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Max Marks</label>
+              <input type="number" name="assignMaxMarks" class="form-control" placeholder="25" value="25">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Instructions & Questions <span class="required-star">*</span></label>
+            <textarea name="assignInstructions" class="form-control" placeholder="Instructions for students regarding solving steps, diagrams, and formatting..." required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary">Assign to Students</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    import { Auth } from './js/auth.js';
+    import { openModal } from './js/main.js';
+    import { initTeacherDashboard } from './js/teacher.js';
+
+    document.getElementById('teacherLogoutBtn')?.addEventListener('click', () => Auth.logout());
+    document.getElementById('btnOpenCreateClassModal')?.addEventListener('click', () => openModal('createClassModal'));
+    document.getElementById('btnOpenUploadMatModal')?.addEventListener('click', () => openModal('uploadMaterialModal'));
+    document.getElementById('btnOpenCreateAssignModal')?.addEventListener('click', () => openModal('createAssignmentModal'));
+
+    initTeacherDashboard();
+  </script>
+</body>
+</html>

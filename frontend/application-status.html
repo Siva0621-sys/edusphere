@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Admission Status | EduSphere</title>
+  <meta name="description" content="Securely track your admission application status at EduSphere using your unique Application ID and verification details.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon">E</div>
+        <div class="brand-name">
+          <span class="brand-name-main"><span class="institute-name">EduSphere</span></span>
+          <span class="brand-tagline-mini institute-tagline">Learn Better. Grow Smarter.</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="courses.html" class="nav-link">Courses</a>
+        <a href="admission.html" class="nav-link">Admission</a>
+        <a href="application-status.html" class="nav-link active">Track Status</a>
+        <a href="faculty.html" class="nav-link">Faculty</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="nav-auth-container"></div>
+        <button class="mobile-menu-toggle" aria-label="Toggle Navigation Menu">&#9776;</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer">
+    <a href="index.html" class="mobile-nav-link">Home <span>&rarr;</span></a>
+    <a href="about.html" class="mobile-nav-link">About Us <span>&rarr;</span></a>
+    <a href="courses.html" class="mobile-nav-link">Tuition Courses <span>&rarr;</span></a>
+    <a href="admission.html" class="mobile-nav-link">Apply for Admission <span>&rarr;</span></a>
+    <a href="application-status.html" class="mobile-nav-link active">Track Application <span>&rarr;</span></a>
+    <a href="faculty.html" class="mobile-nav-link">Our Faculty <span>&rarr;</span></a>
+    <a href="contact.html" class="mobile-nav-link">Contact & Support <span>&rarr;</span></a>
+    <div class="mobile-nav-actions">
+      <a href="login.html" class="btn btn-outline btn-block">Sign In</a>
+      <a href="admission.html" class="btn btn-primary btn-block">Apply for Admission</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- PAGE HEADER -->
+    <section class="section-sm" style="background:var(--bg-subtle);border-bottom:1px solid var(--border-color);text-align:center;">
+      <div class="container" style="max-width:700px;">
+        <span class="section-badge">Student Services</span>
+        <h1 style="font-size:2.6rem;margin-bottom:0.75rem;">Track Application Status</h1>
+        <p style="font-size:1.05rem;color:var(--text-muted);">
+          Enter your Application Reference ID and registered phone number or verification PIN to check your current admission progress.
+        </p>
+      </div>
+    </section>
+
+    <!-- SEARCH & STATUS RESULT SECTION -->
+    <section class="section">
+      <div class="container" style="max-width:800px;">
+        
+        <!-- Search Card -->
+        <div class="card" style="margin-bottom:2.5rem;box-shadow:var(--shadow-md);">
+          <div class="card-body" style="padding:2rem;">
+            <form id="trackStatusForm">
+              <div class="grid-2">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="trackAppId">Application ID <span class="required-star">*</span></label>
+                  <input type="text" id="trackAppId" class="form-control" placeholder="e.g. EDU-2026-8491" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="trackIdentifier">Verification Phone / PIN <span class="required-star">*</span></label>
+                  <input type="text" id="trackIdentifier" class="form-control" placeholder="Registered 10-digit phone or PIN" required>
+                </div>
+              </div>
+
+              <div style="margin-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+                <div style="font-size:0.85rem;color:var(--text-muted);">
+                  💡 Demo application available: <strong>EDU-2026-8491</strong> (PIN: <strong>1234</strong>)
+                </div>
+                <button type="submit" id="btnTrackLookup" class="btn btn-primary">
+                  Check Status &rarr;
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Result Container -->
+        <div id="statusResultContainer" style="display:none;">
+          <!-- Dynamically populated -->
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 <span class="institute-name">EduSphere</span>. All rights reserved.</div>
+        <div style="display:flex;gap:1.5rem;">
+          <a href="admission.html">Apply for Admission</a>
+          <a href="contact.html">Need Help?</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    import { API } from './js/api.js';
+    import { showToast } from './js/main.js';
+
+    const form = document.getElementById('trackStatusForm');
+    const appIdInput = document.getElementById('trackAppId');
+    const identifierInput = document.getElementById('trackIdentifier');
+    const resultContainer = document.getElementById('statusResultContainer');
+
+    async function performLookup(appId, identifier) {
+      resultContainer.style.display = 'block';
+      resultContainer.innerHTML = `
+        <div class="card" style="text-align:center;padding:3rem;">
+          <div class="empty-state-icon">🔍</div>
+          <h3>Verifying Application Record...</h3>
+        </div>
+      `;
+
+      try {
+        const app = await API.trackApplication(appId, identifier);
+
+        let statusBadge = 'badge-warning';
+        let progressPercent = '33%';
+        let nextStepsText = 'Your application is currently being reviewed by our academic evaluation committee. You will receive an SMS and email notification once review is complete.';
+        let showLoginPrompt = false;
+
+        if (app.status === 'Approved') {
+          statusBadge = 'badge-success';
+          progressPercent = '100%';
+          nextStepsText = 'Congratulations! Your admission has been approved. Your student account is ready. Please log in to your student dashboard to access your class timetable, study materials, and live Google Meet links.';
+          showLoginPrompt = true;
+        } else if (app.status === 'Under Review') {
+          statusBadge = 'badge-info';
+          progressPercent = '66%';
+          nextStepsText = 'Your academic records are currently under counselor verification. A staff member may contact your guardian for schedule confirmation.';
+        } else if (app.status === 'Waitlisted') {
+          statusBadge = 'badge-warning';
+          progressPercent = '50%';
+          nextStepsText = 'Your application is on the waitlist for the selected batch. You will be notified immediately when a seat opens.';
+        } else if (app.status === 'Rejected') {
+          statusBadge = 'badge-danger';
+          progressPercent = '100%';
+          nextStepsText = 'We regret to inform you that we cannot accommodate this application for the current academic session due to seat capacity constraints.';
+        }
+
+        const dateStr = new Date(app.createdAt).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' });
+
+        resultContainer.innerHTML = `
+          <div class="card" style="box-shadow:var(--shadow-xl);border-radius:var(--radius-xl);overflow:hidden;">
+            <div style="background:var(--bg-subtle);padding:1.5rem 2rem;border-bottom:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+              <div>
+                <span style="font-size:0.8rem;color:var(--text-muted);text-transform:uppercase;font-weight:700;">Reference ID</span>
+                <h2 style="font-size:1.6rem;color:var(--text-main);">${app.applicationNumber}</h2>
+              </div>
+              <div>
+                <span class="badge ${statusBadge}" style="font-size:1rem;padding:0.45rem 1.1rem;">
+                  ${app.status}
+                </span>
+              </div>
+            </div>
+
+            <div class="card-body" style="padding:2rem;">
+              <!-- Progress Bar -->
+              <div style="margin-bottom:2.5rem;">
+                <div style="display:flex;justify-content:space-between;font-size:0.85rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-muted);">
+                  <span>Application Submitted</span>
+                  <span>Under Review</span>
+                  <span>Decision / Enrolled</span>
+                </div>
+                <div style="background:var(--bg-subtle);border-radius:var(--radius-full);height:10px;width:100%;overflow:hidden;">
+                  <div style="background:var(--primary);width:${progressPercent};height:100%;border-radius:var(--radius-full);transition:width 0.5s ease;"></div>
+                </div>
+              </div>
+
+              <!-- Application Details Grid -->
+              <div class="grid-2" style="margin-bottom:2rem;gap:1.5rem;">
+                <div>
+                  <h4 style="font-size:0.85rem;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.25rem;">Applicant Name</h4>
+                  <p style="font-size:1.1rem;font-weight:600;">${app.fullName}</p>
+                </div>
+                <div>
+                  <h4 style="font-size:0.85rem;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.25rem;">Class & Board</h4>
+                  <p style="font-size:1.1rem;font-weight:600;">${app.currentClass} (${app.board || 'CBSE'})</p>
+                </div>
+                <div>
+                  <h4 style="font-size:0.85rem;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.25rem;">Program Applied</h4>
+                  <p style="font-size:1.1rem;font-weight:600;">${app.courseName || 'Selected Tuition Program'}</p>
+                </div>
+                <div>
+                  <h4 style="font-size:0.85rem;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.25rem;">Date of Application</h4>
+                  <p style="font-size:1.1rem;font-weight:600;">${dateStr}</p>
+                </div>
+              </div>
+
+              <!-- Admin Remarks -->
+              <div style="background:var(--bg-subtle);border-radius:var(--radius-md);padding:1.25rem 1.5rem;margin-bottom:2rem;border-left:4px solid var(--primary);">
+                <h4 style="font-size:0.95rem;margin-bottom:0.35rem;">Academic Committee Notes</h4>
+                <p style="color:var(--text-muted);font-size:0.92rem;">${app.adminNotes || 'No specific notes recorded yet.'}</p>
+              </div>
+
+              <!-- Next Steps -->
+              <div style="border-top:1px solid var(--border-color);padding-top:1.5rem;">
+                <h4 style="font-size:1.1rem;margin-bottom:0.5rem;">Next Steps</h4>
+                <p style="color:var(--text-muted);line-height:1.6;font-size:0.95rem;margin-bottom:1.5rem;">
+                  ${nextStepsText}
+                </p>
+
+                ${showLoginPrompt ? `
+                  <a href="login.html" class="btn btn-primary btn-lg">
+                    Login to Student Portal &rarr;
+                  </a>
+                ` : `
+                  <a href="contact.html" class="btn btn-outline">Contact Admissions Desk</a>
+                `}
+              </div>
+            </div>
+          </div>
+        `;
+      } catch (err) {
+        resultContainer.innerHTML = `
+          <div class="card" style="text-align:center;padding:3rem;">
+            <div class="empty-state-icon" style="color:var(--danger);">⚠️</div>
+            <h3>Application Record Not Found</h3>
+            <p style="color:var(--text-muted);max-width:450px;margin:0 auto 1.5rem auto;">
+              We could not find an application matching Reference ID "${appId}" with the provided verification details. Please verify your reference number and try again.
+            </p>
+            <button class="btn btn-outline btn-sm" onclick="document.getElementById('trackAppId').focus();">Try Again</button>
+          </div>
+        `;
+      }
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const appId = appIdInput.value.trim();
+      const identifier = identifierInput.value.trim();
+      if (!appId || !identifier) {
+        showToast('Required Information Missing', 'Please provide both Application ID and verification PIN/phone.', 'error');
+        return;
+      }
+      performLookup(appId, identifier);
+    });
+
+    // Auto load if URL query parameters are present
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryId = urlParams.get('id');
+    const queryPin = urlParams.get('pin');
+    if (queryId) {
+      appIdInput.value = queryId;
+      if (queryPin) identifierInput.value = queryPin;
+      performLookup(queryId, queryPin || '');
+    }
+  </script>
+</body>
+</html>

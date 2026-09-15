@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Admission Application | EduSphere</title>
+  <meta name="description" content="Apply online for tuition admission at EduSphere. Quick 4-step application with instant application tracking ID.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon">E</div>
+        <div class="brand-name">
+          <span class="brand-name-main"><span class="institute-name">EduSphere</span></span>
+          <span class="brand-tagline-mini institute-tagline">Learn Better. Grow Smarter.</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="courses.html" class="nav-link">Courses</a>
+        <a href="admission.html" class="nav-link active">Admission</a>
+        <a href="application-status.html" class="nav-link">Track Status</a>
+        <a href="faculty.html" class="nav-link">Faculty</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="nav-auth-container"></div>
+        <button class="mobile-menu-toggle" aria-label="Toggle Navigation Menu">&#9776;</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer">
+    <a href="index.html" class="mobile-nav-link">Home <span>&rarr;</span></a>
+    <a href="about.html" class="mobile-nav-link">About Us <span>&rarr;</span></a>
+    <a href="courses.html" class="mobile-nav-link">Tuition Courses <span>&rarr;</span></a>
+    <a href="admission.html" class="mobile-nav-link active">Apply for Admission <span>&rarr;</span></a>
+    <a href="application-status.html" class="mobile-nav-link">Track Application <span>&rarr;</span></a>
+    <a href="faculty.html" class="mobile-nav-link">Our Faculty <span>&rarr;</span></a>
+    <a href="contact.html" class="mobile-nav-link">Contact & Support <span>&rarr;</span></a>
+    <div class="mobile-nav-actions">
+      <a href="login.html" class="btn btn-outline btn-block">Sign In</a>
+      <a href="admission.html" class="btn btn-primary btn-block">Apply for Admission</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- PAGE HEADER -->
+    <section class="section-sm" style="background:linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(14, 165, 233, 0.06) 100%);border-bottom:1px solid var(--border-color);text-align:center;">
+      <div class="container" style="max-width:750px;">
+        <span class="section-badge">Admissions Desk</span>
+        <h1 style="font-size:2.6rem;margin-bottom:0.75rem;">Online Tuition Admission Form</h1>
+        <p style="font-size:1.05rem;color:var(--text-muted);">
+          Complete the 4-step registration below. Once submitted, you will receive a unique Application ID to track your status.
+        </p>
+      </div>
+    </section>
+
+    <!-- ADMISSION FORM CONTAINER -->
+    <section class="section">
+      <div class="container" style="max-width:850px;">
+        
+        <!-- Stepper Indicator -->
+        <div class="step-progress-wrapper">
+          <div class="step-progress-list">
+            <div class="step-item active" data-step-indicator="1">
+              <div class="step-bubble">1</div>
+              <div class="step-title">Student Info</div>
+            </div>
+            <div class="step-item" data-step-indicator="2">
+              <div class="step-bubble">2</div>
+              <div class="step-title">Academic Details</div>
+            </div>
+            <div class="step-item" data-step-indicator="3">
+              <div class="step-bubble">3</div>
+              <div class="step-title">Guardian Info</div>
+            </div>
+            <div class="step-item" data-step-indicator="4">
+              <div class="step-bubble">4</div>
+              <div class="step-title">Preferences & Consent</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Multi-step Form Card -->
+        <div class="card" style="box-shadow:var(--shadow-xl);">
+          <div class="card-body" style="padding:2.5rem;">
+            <form id="admissionForm" novalidate>
+
+              <!-- STEP 1: STUDENT INFO -->
+              <div class="step-pane active" data-step="1">
+                <h3 style="font-size:1.35rem;margin-bottom:1.5rem;color:var(--text-main);display:flex;align-items:center;gap:0.5rem;">
+                  <span>👤</span> Step 1: Student Information
+                </h3>
+
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label class="form-label" for="fullName">Full Name <span class="required-star">*</span></label>
+                    <input type="text" id="fullName" name="fullName" class="form-control" placeholder="e.g. Aarav Sharma" required>
+                    <div class="form-error-text">Please enter the student's full name.</div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="dob">Date of Birth <span class="required-star">*</span></label>
+                    <input type="date" id="dob" name="dob" class="form-control" required>
+                    <div class="form-error-text">Valid date of birth is required.</div>
+                  </div>
+                </div>
+
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label class="form-label" for="gender">Gender</label>
+                    <select id="gender" name="gender" class="form-control">
+                      <option value="Not Specified">Select Gender (Optional)</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="email">Student Email Address <span class="required-star">*</span></label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="aarav@example.com" required>
+                    <div class="form-error-text">Please provide a valid email address.</div>
+                  </div>
+                </div>
+
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label class="form-label" for="phone">Student Mobile Number <span class="required-star">*</span></label>
+                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="10-digit mobile number" required>
+                    <div class="form-error-text">Valid 10-digit phone number is required.</div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="whatsapp">WhatsApp Number</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" class="form-control" placeholder="Same as phone or different">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="address">Residential Address <span class="required-star">*</span></label>
+                  <input type="text" id="address" name="address" class="form-control" placeholder="House/Flat No, Street, Locality" required>
+                  <div class="form-error-text">Address is required.</div>
+                </div>
+
+                <div class="grid-3">
+                  <div class="form-group">
+                    <label class="form-label" for="city">City <span class="required-star">*</span></label>
+                    <input type="text" id="city" name="city" class="form-control" placeholder="e.g. Bengaluru" required>
+                    <div class="form-error-text">City is required.</div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="state">State <span class="required-star">*</span></label>
+                    <input type="text" id="state" name="state" class="form-control" placeholder="e.g. Karnataka" required>
+                    <div class="form-error-text">State is required.</div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="pincode">Pincode <span class="required-star">*</span></label>
+                    <input type="text" id="pincode" name="pincode" class="form-control" placeholder="6-digit pincode" required>
+                    <div class="form-error-text">Pincode is required.</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 2: ACADEMIC DETAILS -->
+              <div class="step-pane" data-step="2">
+                <h3 style="font-size:1.35rem;margin-bottom:1.5rem;color:var(--text-main);display:flex;align-items:center;gap:0.5rem;">
+                  <span>🎓</span> Step 2: Academic Background
+                </h3>
+
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label class="form-label" for="currentClass">Current Class / Grade <span class="required-star">*</span></label>
+                    <select id="currentClass" name="currentClass" class="form-control" required>
+                      <option value="">Select Grade</option>
+                      <option value="Class 8">Class 8</option>
+                      <option value="Class 9">Class 9</option>
+                      <option value="Class 10">Class 10</option>
+                      <option value="Class 11">Class 11</option>
+                      <option value="Class 12">Class 12</option>
+                    </select>
+                    <div class="form-error-text">Please select current class.</div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="board">Education Board <span class="required-star">*</span></label>
+                    <select id="board" name="board" class="form-control" required>
+                      <option value="">Select Board</option>
+                      <option value="CBSE">CBSE</option>
+                      <option value="ICSE / ISC">ICSE / ISC</option>
+                      <option value="State Board">State Board</option>
+                      <option value="IGCSE / IB">IGCSE / IB</option>
+                    </select>
+                    <div class="form-error-text">Please select education board.</div>
+                  </div>
+                </div>
+
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label class="form-label" for="schoolName">Current School Name <span class="required-star">*</span></label>
+                    <input type="text" id="schoolName" name="schoolName" class="form-control" placeholder="Full name of school" required>
+                    <div class="form-error-text">School name is required.</div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="previousMarks">Previous Year Marks / Percentage (Optional)</label>
+                    <input type="text" id="previousMarks" name="previousMarks" class="form-control" placeholder="e.g. 88% or Grade A">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="preferredCourse">Select Tuition Course <span class="required-star">*</span></label>
+                  <select id="preferredCourse" name="preferredCourse" class="form-control" required>
+                    <option value="">Choose Course Program</option>
+                    <!-- Populated dynamically by admission.js -->
+                  </select>
+                  <div class="form-error-text">Please select a course.</div>
+                </div>
+              </div>
+
+              <!-- STEP 3: PARENT / GUARDIAN INFO -->
+              <div class="step-pane" data-step="3">
+                <h3 style="font-size:1.35rem;margin-bottom:1.5rem;color:var(--text-main);display:flex;align-items:center;gap:0.5rem;">
+                  <span>👨‍👩‍👧</span> Step 3: Parent / Guardian Information
+                </h3>
+
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label class="form-label" for="guardianName">Parent / Guardian Full Name <span class="required-star">*</span></label>
+                    <input type="text" id="guardianName" name="guardianName" class="form-control" placeholder="e.g. Rajesh Sharma" required>
+                    <div class="form-error-text">Guardian name is required.</div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="guardianRelationship">Relationship to Student <span class="required-star">*</span></label>
+                    <select id="guardianRelationship" name="guardianRelationship" class="form-control" required>
+                      <option value="Father">Father</option>
+                      <option value="Mother">Mother</option>
+                      <option value="Guardian">Legal Guardian</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label class="form-label" for="guardianPhone">Guardian Contact Phone <span class="required-star">*</span></label>
+                    <input type="tel" id="guardianPhone" name="guardianPhone" class="form-control" placeholder="10-digit phone number" required>
+                    <div class="form-error-text">Valid guardian contact number is required.</div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="guardianEmail">Guardian Email Address (Optional)</label>
+                    <input type="email" id="guardianEmail" name="guardianEmail" class="form-control" placeholder="parent@example.com">
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 4: PREFERENCES & CONSENT -->
+              <div class="step-pane" data-step="4">
+                <h3 style="font-size:1.35rem;margin-bottom:1.5rem;color:var(--text-main);display:flex;align-items:center;gap:0.5rem;">
+                  <span>⚙️</span> Step 4: Batch Preferences & Submission
+                </h3>
+
+                <div class="form-group">
+                  <label class="form-label">Preferred Learning Mode <span class="required-star">*</span></label>
+                  <div class="radio-card-grid">
+                    <label class="radio-card">
+                      <input type="radio" name="preferredMode" value="Hybrid" checked>
+                      <div class="radio-card-content">
+                        <div class="radio-card-icon">🔄</div>
+                        <div class="radio-card-title">Hybrid Mode</div>
+                        <div class="radio-card-sub">Attend Center or Online</div>
+                      </div>
+                    </label>
+
+                    <label class="radio-card">
+                      <input type="radio" name="preferredMode" value="Online">
+                      <div class="radio-card-content">
+                        <div class="radio-card-icon">💻</div>
+                        <div class="radio-card-title">Online Live</div>
+                        <div class="radio-card-sub">Google Meet & Zoom</div>
+                      </div>
+                    </label>
+
+                    <label class="radio-card">
+                      <input type="radio" name="preferredMode" value="Offline">
+                      <div class="radio-card-content">
+                        <div class="radio-card-icon">🏫</div>
+                        <div class="radio-card-title">In-Center Offline</div>
+                        <div class="radio-card-sub">Smart Classroom</div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label class="form-label" for="preferredBatch">Preferred Batch Timing</label>
+                    <select id="preferredBatch" name="preferredBatch" class="form-control">
+                      <option value="Evening (5:00 PM - 7:00 PM)">Evening (5:00 PM - 7:00 PM)</option>
+                      <option value="Late Evening (6:30 PM - 8:30 PM)">Late Evening (6:30 PM - 8:30 PM)</option>
+                      <option value="Morning Weekend (9:00 AM - 12:00 PM)">Weekend Batch (9:00 AM - 12:00 PM)</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="additionalNotes">Specific Learning Needs / Notes</label>
+                    <input type="text" id="additionalNotes" name="additionalNotes" class="form-control" placeholder="e.g. Needs extra focus on Organic Chemistry">
+                  </div>
+                </div>
+
+                <!-- Consents -->
+                <div style="margin:2rem 0 1.5rem 0;padding-top:1.5rem;border-top:1px solid var(--border-color);">
+                  <label class="custom-checkbox-group">
+                    <input type="checkbox" id="termsConsent" required>
+                    <span class="checkbox-visual">
+                      <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    </span>
+                    <span class="checkbox-label-text">
+                      I declare that all information submitted in this application is accurate and agree to abide by the academic code of conduct and institute tuition rules. <span class="required-star">*</span>
+                    </span>
+                  </label>
+
+                  <label class="custom-checkbox-group">
+                    <input type="checkbox" id="privacyConsent" required>
+                    <span class="checkbox-visual">
+                      <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    </span>
+                    <span class="checkbox-label-text">
+                      I consent to receive academic communications, timetable updates, and batch notifications from EduSphere via email and WhatsApp. <span class="required-star">*</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- FORM FOOTER BUTTONS -->
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border-color);">
+                <button type="button" id="btnPrevStep" class="btn btn-outline" style="display:none;">
+                  &larr; Back
+                </button>
+                <div style="margin-left:auto;display:flex;gap:1rem;">
+                  <button type="button" id="btnNextStep" class="btn btn-primary">
+                    Next Step &rarr;
+                  </button>
+                  <button type="submit" id="btnSubmitAdmission" class="btn btn-accent btn-lg" style="display:none;">
+                    Submit Application &rarr;
+                  </button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- TRACKING PROMPT -->
+        <div style="text-align:center;margin-top:2.5rem;color:var(--text-muted);font-size:0.95rem;">
+          Already submitted an application? 
+          <a href="application-status.html" style="color:var(--primary);font-weight:600;text-decoration:underline;">
+            Track your admission status here
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 <span class="institute-name">EduSphere</span>. All rights reserved.</div>
+        <div style="display:flex;gap:1.5rem;">
+          <a href="contact.html">Admissions Desk</a>
+          <a href="application-status.html">Track Status</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    import { initAdmissionForm } from './js/admission.js';
+    initAdmissionForm();
+  </script>
+</body>
+</html>
